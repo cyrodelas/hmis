@@ -494,6 +494,15 @@
     });
     
   });
+
+
+  function deleteData(Did)
+    {
+        if (confirm("Delete selected data?"))
+        {
+            location.href = "<?php echo base_url();?>registrar/deleteProgram/"+Did;
+        }
+    }
 </script>
 
 </body>

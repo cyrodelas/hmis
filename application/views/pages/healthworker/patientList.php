@@ -92,10 +92,10 @@
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 
                 <div class="image">
-                    <img src="<?php echo base_url();?>assets/images/users/<?php echo $this->session->user_image;?>" class="img-circle elevation-2" alt="User Image">
+                    <img style="width: 60px; margin-right:5px" src="<?php echo base_url();?>assets/images/users/<?php echo $this->session->user_image;?>" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block"><?php echo $this->session->user_fn;?> <?php echo $this->session->user_ln;?></a>
+                    <a href="#" style="font-weight:600" class="d-block"><?php echo $this->session->user_fn;?> <?php echo $this->session->user_ln;?> <br> <span style="font-size:14px"><?php echo $this->session->user_role;?></span></a>
                 </div>
                 
                 
@@ -107,9 +107,9 @@
             
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    
+
                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>dashboard-patient" class="nav-link active">
+                        <a href="<?php echo base_url();?>dashboard-hw" class="nav-link ">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                Dashboard
@@ -117,42 +117,31 @@
                         </a>
                     </li>
 
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>patient-information" class="nav-link">
+                    <li class="nav-item menu-open">
+                        <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Patient Information
+                                Patient Management
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url();?>patientInformation" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Patient Information</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url();?>patientConsultation" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Patient Consultation</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>medical-history" class="nav-link">
-                            <i class="nav-icon fas fa-folder"></i>
-                            <p>
-                                Patient Medical History
-                            </p>
-                        </a>
-                    </li>
-
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>consultation" class="nav-link">
-                            <i class="nav-icon fas fa-handshake"></i>
-                            <p>
-                                Patient Consultation
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="<?php echo base_url();?>signout" class="nav-link">
-                            <i class="nav-icon fa fa-sign-out-alt"></i>
-                            <p>
-                                Log Out
-                            </p>
-                        </a>
-                    </li>
-
+                   
                 
 
                     
@@ -174,132 +163,87 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            
+                            <li class="breadcrumb-item"><a href="<?php echo base_url();?>patientInformation">Patient Information</a></li>
+                            <li class="breadcrumb-item active">Patient List</li>
                         </ol>
                     </div>
                 </div>
             </div>
         </div>
-        
 
         <section class="content">
             <div class="container-fluid">
 
-                <div class="row">
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>Data</h3>
-                                <p>Title</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
+                <div class="card">
+                    
+                    <div class="card-header">
+                        <h3 class="card-title" style="font-weight:600; font-size: 1.5em">PATIENT MASTER LIST</h3>
+                        <div class="card-tools">
+                            <a href="<?php echo base_url();?>healthworker/patientInformationAdd" class="btn btn-primary"> ADD PATIENT DATA </a>
+                        </div>                  
                     </div>
 
-                    <div class="col-lg-3 col-6">
+                    <div class="card-body">
+                        
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Patient Number</th>
+                                <th>Full Name</th>
+                                <th>Sex</th>
+                                <th>Birth Date</th>
+                                <th>Civil Status</th>
+                                <th>Address</th>
+                                <th>Options</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    if($patientData){
+                                        foreach ($patientData as $rs) {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo sprintf("%08d",$rs->patientNumber);?></td>
+                                                <td><?php echo $rs->patientFirstName;?> <?php echo $rs->patientMiddleName;?> <?php echo $rs->patientLastName;?></td>
+                                                <td><?php echo $rs->patientSex;?></td>
+                                                <td><?php echo $rs->patientBirthDate;?></td>
+                                                <td><?php echo $rs->patientCivilStatus;?></td>
+                                                <td><?php echo $rs->patientHouseNo;?> <?php echo $rs->patientStreet;?> <?php echo $rs->patientBrgy;?> <?php echo $rs->patientCity;?></td>
+                                                <th>
+                                                    <a href="<?php echo base_url();?>healthworker/patientInformationView/<?php echo $rs->patientNumber;?>" > view</a>
+                                                    |
+                                                    <a href="<?php echo base_url();?>healthworker/patientInformationUpdate/<?php echo $rs->patientNumber;?>" > edit</a>
+                                                    |
+                                                    <a href="Javascript:deleteData(<?php echo $rs->patientNumber;?>)"> remove</a>
 
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>Data</h3>
-                                <p>Title</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
+                                                </th>
+                                            </tr>
+                                <?php   }
+                                    }
+                                    ?>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>Patient Number</th>
+                                <th>Full Name</th>
+                                <th>Sex</th>
+                                <th>Birth Date</th>
+                                <th>Civil Status</th>
+                                <th>Address</th>
+                                <th>Options</th>
+                            </tr>
+                            </tfoot>
+                        </table>
 
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>Data</h3>
-                                <p>Title</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>Data</h3>
-                                <p>Title</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="row">
-                    <div class="col-lg-6 col-6">
-                        <div class="card ">
-                            <div class="card-header border-0">
-                                <h3 class="card-title">
-                                    Patient Appointments
-                                </h3>
-                            </div>
-
-                            <div class="card-body pt-0">
-
-                                <div id="calendar" style="width: 100%"></div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-6 col-6">
-                        <div class="card ">
-                            <div class="card-header border-0">
-                                <h3 class="card-title">
-                                    Appointment Details
-                                </h3>
-                            </div>
-
-                            <div class="card-body pt-0">
-
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Nature of Visit</th>
-                                        <th>Consultation Type</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Nature of Visit</th>
-                                        <th>Consultation Type</th> 
-                                    </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-
-                        </div>
                     </div>
 
                 </div>
 
             </div>
+
         </section>
+        
+        
 
     </div>
 
@@ -551,6 +495,15 @@
     });
     
   });
+
+
+  function deleteData(Did)
+    {
+        if (confirm("Delete selected data?"))
+        {
+            location.href = "<?php echo base_url();?>healthworker/deletePatient/"+Did;
+        }
+    }
 </script>
 
 </body>

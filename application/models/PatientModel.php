@@ -101,6 +101,7 @@ class PatientModel extends CI_model
         $data = array(
             'consultationNo' => $transactionID,
             'consultationType' => $this->input->post('consultationType', true),
+            'hcName' => $this->input->post('hcName', true),
             'patientNo' => $this->input->post('patientNo', true),
             'patientAge' => $this->input->post('patientAge', true),
             'patientSex' => $this->input->post('patientSex', true),

@@ -92,10 +92,10 @@
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 
                 <div class="image">
-                    <img src="<?php echo base_url();?>assets/images/users/<?php echo $this->session->user_image;?>" class="img-circle elevation-2" alt="User Image">
+                    <img style="width: 60px; margin-right:5px" src="<?php echo base_url();?>assets/images/users/<?php echo $this->session->user_image;?>" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block"><?php echo $this->session->user_fn;?> <?php echo $this->session->user_ln;?></a>
+                    <a href="#" style="font-weight:600" class="d-block"><?php echo $this->session->user_fn;?> <?php echo $this->session->user_ln;?> <br> <span style="font-size:14px"><?php echo $this->session->user_role;?></span></a>
                 </div>
                 
                 
@@ -107,9 +107,9 @@
             
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    
+
                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>dashboard-patient" class="nav-link active">
+                        <a href="<?php echo base_url();?>dashboard-hw" class="nav-link ">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                Dashboard
@@ -117,42 +117,31 @@
                         </a>
                     </li>
 
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>patient-information" class="nav-link">
+                    <li class="nav-item menu-open">
+                        <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Patient Information
+                                Patient Management
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url();?>patientInformation" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Patient Information</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url();?>patientConsultation" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Patient Consultation</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>medical-history" class="nav-link">
-                            <i class="nav-icon fas fa-folder"></i>
-                            <p>
-                                Patient Medical History
-                            </p>
-                        </a>
-                    </li>
-
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>consultation" class="nav-link">
-                            <i class="nav-icon fas fa-handshake"></i>
-                            <p>
-                                Patient Consultation
-                            </p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="<?php echo base_url();?>signout" class="nav-link">
-                            <i class="nav-icon fa fa-sign-out-alt"></i>
-                            <p>
-                                Log Out
-                            </p>
-                        </a>
-                    </li>
-
+                
                 
 
                     
@@ -174,123 +163,216 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            
+                            <li class="breadcrumb-item"><a href="<?php echo base_url();?>patientInformation">Patient Information</a></li>
+                            <li class="breadcrumb-item active">Add Records</li>
                         </ol>
                     </div>
                 </div>
             </div>
         </div>
         
-
+        <form method="post" id="frm_validation" action="<?php echo base_url();?>healthworker/addPatientData" data-toggle="validator" class="form-horizontal form-label-left" enctype="multipart/form-data">
+                       
         <section class="content">
             <div class="container-fluid">
-
                 <div class="row">
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>Data</h3>
-                                <p>Title</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>Data</h3>
-                                <p>Title</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>Data</h3>
-                                <p>Title</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>Data</h3>
-                                <p>Title</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-person"></i>
-                            </div>
-                            <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="row">
-                    <div class="col-lg-6 col-6">
-                        <div class="card ">
-                            <div class="card-header border-0">
-                                <h3 class="card-title">
-                                    Patient Appointments
-                                </h3>
+                    <div class="col-md-9">
+                        <div class="card">
+                            
+                            <div class="card-header">
+                                <h3 class="card-title" style="font-weight:600; font-size: 1em">PATIENT INFORMATION</h3>      
+                                
                             </div>
 
-                            <div class="card-body pt-0">
+                            
 
-                                <div id="calendar" style="width: 100%"></div>
-                            </div>
+                            <div class="card-body">
+                                
+                                
+                                <div class="row">
 
-                        </div>
-                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="itemName">Last Name</label>
+                                            <input style="text-transform:uppercase" type="text" class="form-control" id="itemName" placeholder="Enter Last Name" name="patientLastName" >
+                                        </div>
+                                    </div>
 
-                    <div class="col-lg-6 col-6">
-                        <div class="card ">
-                            <div class="card-header border-0">
-                                <h3 class="card-title">
-                                    Appointment Details
-                                </h3>
-                            </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="itemDescription">First Name</label>
+                                            <input style="text-transform:uppercase" type="text" class="form-control" id="itemDescription" placeholder="Enter First Name" name="patientFirstName" >
+                                        </div>
+                                    </div>
 
-                            <div class="card-body pt-0">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="itemDescription">Middle Name</label>
+                                            <input style="text-transform:uppercase" type="text" class="form-control" id="itemDescription" placeholder="Enter Middle Name" name="patientMiddleName" >
+                                        </div> 
+                                    </div>
 
-                                <table id="example1" class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Nature of Visit</th>
-                                        <th>Consultation Type</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="itemDescription">House No / Lot  No</label>
+                                            <input style="text-transform:uppercase" type="text" class="form-control" id="itemDescription" placeholder="Enter House No / Lot  No" name="patientHouseNo" >
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="itemDescription">Street Name</label>
+                                            <input style="text-transform:uppercase" type="text" class="form-control" id="itemDescription" placeholder="Enter Street Name" name="patientStreet" >
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="itemCategory">Barangay</label>
+                                            <select class="custom-select form-control" id="itemCategory" name="patientBrgy">
+                                                <option disabled selected hidden value=""> -- Select Barangay -- </option>
+                                                <?php foreach($bgData as $rsBrgy){ ?>
+                                                    <option><?php echo $rsBrgy->hcName; ?></option>
+                                                <?php }?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="itemDescription">Health Center</label>
+                                            <input readonly type="text" class="form-control" id="itemDescription" placeholder="" name="patientHC" value="<?php echo $this->session->user_HW;?>">
+                                        </div> 
+                                    </div>
+
+                                                            
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="itemDescription">City / Municipality </label>
+                                            <input readonly type="text" class="form-control" id="itemDescription" name="patientCity" value="CAVITE CITY">
+                                        </div> 
+                                    </div>
+
                                     
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Nature of Visit</th>
-                                        <th>Consultation Type</th> 
-                                    </tr>
-                                    </tfoot>
-                                </table>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="itemGroup">Sex</label>
+                                            <select class="custom-select form-control" id="itemGroup" name="patientSex">
+                                                <option disabled selected hidden value=""> -- Select Sex --</option>
+                                                <option>MALE</option>
+                                                <option>FEMALE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Birth Date</label>
+                                            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                                <input type="text" id="dob" class="form-control datetimepicker-input" data-target="#reservationdate" name="patientBirthDate" >
+                                                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-md-1">
+                                            <div class="form-group">
+                                            <label for="itemDescription">Age</label>
+                                            <input disabled type="text" class="form-control" id="patientAge" placeholder="" >
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="itemDescription">Birth Place</label>
+                                            <input style="text-transform:uppercase" type="text" class="form-control" id="itemDescription" placeholder="Enter Birth Place" name="patientBirthPlace" >
+                                        </div> 
+                                    </div>
+
+                                    
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="itemGroup">Civil Status</label>
+                                            <select class="custom-select form-control" id="itemGroup" name="patientCivilStatus">
+                                                <option disabled selected hidden value=""> -- Select Civil Status --</option>
+                                                <option>SINGLE</option>
+                                                <option>MARRIED</option>
+                                                <option>DIVORCED</option>
+                                                <option>SEPARATED</option>
+                                                <option>WIDOWED</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <label for="itemCategory">Religion</label>
+                                            <select class="custom-select form-control" id="itemCategory" name="patientReligion">
+                                                <option disabled selected hidden value=""> -- Select Religion -- </option>
+                                                <?php foreach($relData as $rsRel){ ?>
+                                                    <option><?php echo strtoupper($rsRel->religionName); ?></option>
+                                                <?php }?>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="itemDescription">Occupation</label>
+                                            <input style="text-transform:uppercase" type="text" class="form-control" id="itemDescription" placeholder="Enter Occupation" name="patientOccupation" >
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="itemDescription">Contact Number</label>
+                                            <input style="text-transform:uppercase" type="text" class="form-control" id="itemDescription" placeholder="Enter Contact Number" name="patientContactNum" >
+                                        </div> 
+                                    </div>
+
+                                    <div class="col-md-4">
+                                            <div class="form-group">
+                                            <label for="itemDescription">Email Address</label>
+                                            <input type="text" class="form-control" id="itemDescription" placeholder="Enter Email Address" name="patientEmailAdd" >
+                                        </div> 
+                                    </div>
+
+                                    
+                                </div>        
+                                            
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="card">
+                            
+                            <div class="card-header">
+                                <h3 class="card-title" style="font-weight:600; font-size: 1em">PATIENT IMAGE</h3>      
+                            </div>
+
+                            <div class="card-body">
+                            
+                                <img id="userPic" class="img-responsive pt-2 " style="width:100%" src="<?php echo base_url();?>assets/images/patient/user.png">
+                                        
+                                <div class="form-group pb-2">    
+                                    <label for="exampleInputFile"></label>
+                                    <div class="input-group">
+                                    
+                                        <input type="file" class="" id="file" accept="image/*" onchange="return fileValidation()" name="Filename"/>
+                                    
+                                    </div>
+                                </div>
+                                
+                                <button  type="submit" class="btn btn-primary " style="width:100%; margin-bottom:8px">SAVE PATIENT INFORMATION</button>
+                                
                             </div>
 
                         </div>
@@ -299,7 +381,10 @@
                 </div>
 
             </div>
+
         </section>
+        </form>
+        
 
     </div>
 
@@ -511,46 +596,54 @@
 <script src="<?php echo base_url();?>/assets/template/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
+    $('#reservationdate').datetimepicker({
+        format: 'YYYY-MM-DD'
+    });
 
-    $(function() {
-
-        $('#calendar').fullCalendar({
-            defaultView: 'month',
-
-        });
+    $("#reservationdate").on("change.datetimepicker", ({date}) => {
+        
+        var dob = date;
+        var today = new Date();
+        var dayDiff = Math.ceil(today - dob) / (1000 * 60 * 60 * 24 * 365);
+        var age = parseInt(dayDiff);
+        console.log(dob);
+        console.log(today);
+        $('#patientAge').val(age);
 
     });
 
-    $('#calendar').fullCalendar({
-        viewRender: function(currentView) {
-            var minDate = moment();
-            var navigationContainer = currentView.el.parent().prev()
-            var cantGoBefore = currentView.start <= minDate;
 
-            $(".fc-prev-button", navigationContainer).prop('disabled', cantGoBefore);
-            $(".fc-prev-button", navigationContainer).toggleClass('fc-state-disabled', cantGoBefore);
-        },
+    function fileValidation(){
+        var fileInput = document.getElementById('file');
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+        if(!allowedExtensions.exec(filePath)){
+            alert('Image file only allowed.');
+            fileInput.value = '';
+            return false;
+        }
 
-        events: [
+    }
 
-        ]
+    function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#userPic').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+  
+        }
+    }
+
+    $("#file").change(function(){
+        readURL(this);
     });
 
-</script>
 
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-    
-  });
 </script>
 
 </body>

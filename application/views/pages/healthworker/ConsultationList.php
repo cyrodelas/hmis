@@ -82,7 +82,7 @@
     
     <aside class="main-sidebar sidebar-light-primary elevation-4">
         
-        <a href="#" class="brand-link">
+        <a href="index3.html" class="brand-link">
             <img src="<?php echo base_url();?>assets/images/favicon.png" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span style="color:maroon; font-size: .68em" class="brand-text font-weight-bold"> City Government of Cavite</span>
         </a>
@@ -90,11 +90,12 @@
         <div class="sidebar">
             
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                
                 <div class="image">
-                    <img src="<?php echo base_url();?>assets/images/users/<?php echo $this->session->user_image;?>" class="img-circle elevation-2" alt="User Image">
+                    <img style="width: 60px; margin-right:5px" src="<?php echo base_url();?>assets/images/users/<?php echo $this->session->user_image;?>" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block"><?php echo $this->session->user_fn;?> <?php echo $this->session->user_ln;?></a>
+                    <a href="#" style="font-weight:600" class="d-block"><?php echo $this->session->user_fn;?> <?php echo $this->session->user_ln;?> <br> <span style="font-size:14px"><?php echo $this->session->user_role;?></span></a>
                 </div>
                 
                 
@@ -106,9 +107,9 @@
             
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    
+
                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>dashboard-patient" class="nav-link">
+                        <a href="<?php echo base_url();?>dashboard-hw" class="nav-link ">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                Dashboard
@@ -116,41 +117,32 @@
                         </a>
                     </li>
 
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>patient-information" class="nav-link">
+                    <li class="nav-item menu-open">
+                        <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Patient Information
+                                Patient Management
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="" class="nav-link ">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Patient Information</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Patient Consultation</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>medical-history" class="nav-link active">
-                            <i class="nav-icon fas fa-folder"></i>
-                            <p>
-                                Patient Medical History
-                            </p>
-                        </a>
-                    </li>
-
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>consultation" class="nav-link">
-                            <i class="nav-icon fas fa-handshake"></i>
-                            <p>
-                                Patient Consultation
-                            </p>
-                        </a>
-                    </li>
+                   
                 
-                    <li class="nav-item">
-                        <a href="<?php echo base_url();?>signout" class="nav-link">
-                            <i class="nav-icon fa fa-sign-out-alt"></i>
-                            <p>
-                                Log Out
-                            </p>
-                        </a>
-                    </li>
 
                     
                 
@@ -171,7 +163,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                           
+                            <li class="breadcrumb-item"><a href="<?php echo base_url();?>patientInformation">Patient Information</a></li>
+                            <li class="breadcrumb-item active">Patient Consultation</li>
                         </ol>
                     </div>
                 </div>
@@ -184,9 +177,9 @@
                 <div class="card">
                     
                     <div class="card-header">
-                        <h3 class="card-title" style="font-weight:600; font-size: 1.5em">PATIENT MEDICAL HISTORY</h3>
+                        <h3 class="card-title" style="font-weight:600; font-size: 1.5em">PATIENT CONSULTATION LIST</h3>
                         <div class="card-tools">
-                        
+
                         </div>                  
                     </div>
 
@@ -195,26 +188,44 @@
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Transaction Number</th>
-                                <th>Nature of Visit</th>
                                 <th>Consultation Type</th>
-                                <th>Symptoms</th>
-                                <th>Diagnosis</th>
+                                <th>Patient Number</th>
+                                <th>Full Name</th>
+                                <th>Sex</th>
+                                <th>Age</th>
+                                <th>Civil Status</th>
                                 <th>Options</th>
                             </tr>
                             </thead>
                             <tbody>
-                            
+                                <?php
+                                    if($patientData){
+                                        foreach ($patientData as $rs) {
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $rs->consultationType;?></td>
+                                                <td><?php echo sprintf("%08d",$rs->patientNo);?></td>
+                                                <td><?php echo $rs->patientFirstName;?> <?php echo $rs->patientMiddleName;?> <?php echo $rs->patientLastName;?></td>
+                                                <td><?php echo $rs->patientSex;?></td>
+                                                <td><?php echo $rs->patientAge;?></td>
+                                                <td><?php echo $rs->patientCivilStatus;?></td>
+                                                <th>
+                                                    <a href="<?php echo base_url();?>healthworker/patientInformationView/<?php echo $rs->patientNo;?>" > view consultation</a>
+                                                    
+                                                </th>
+                                            </tr>
+                                <?php   }
+                                    }
+                                    ?>
                             </tbody>
                             <tfoot>
                             <tr>
-                                <th>Date</th>
-                                <th>Transaction Number</th>
-                                <th>Nature of Visit</th>
                                 <th>Consultation Type</th>
-                                <th>Symptoms</th>
-                                <th>Diagnosis</th>
+                                <th>Patient Number</th>
+                                <th>Full Name</th>
+                                <th>Sex</th>
+                                <th>Birth Date</th>
+                                <th>Civil Status</th>
                                 <th>Options</th>
                             </tr>
                             </tfoot>
@@ -227,6 +238,8 @@
             </div>
 
         </section>
+        
+        
 
     </div>
 
@@ -242,6 +255,8 @@
 
     </aside>
 
+
+    
 
 </div>
 
@@ -275,7 +290,11 @@
 
 <script src="<?php echo base_url();?>assets/template/dist/js/pages/dashboard.js"></script>
 
-
+<script>
+//  $(window).on('load', function() {
+//    $('#modal-lg').modal('show');
+//  });
+</script>
 
 <script src='<?php echo base_url();?>/assets/plugins/calendar/moment.min.js'></script>
 <script src='<?php echo base_url();?>/assets/plugins/calendar/fullcalendar.min.js'></script>
@@ -295,11 +314,39 @@
 <script src="<?php echo base_url();?>/assets/template/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 <script>
+
+    $(function() {
+
+        $('#calendar').fullCalendar({
+            defaultView: 'month',
+
+        });
+
+    });
+
+    $('#calendar').fullCalendar({
+        viewRender: function(currentView) {
+            var minDate = moment();
+            var navigationContainer = currentView.el.parent().prev()
+            var cantGoBefore = currentView.start <= minDate;
+
+            $(".fc-prev-button", navigationContainer).prop('disabled', cantGoBefore);
+            $(".fc-prev-button", navigationContainer).toggleClass('fc-state-disabled', cantGoBefore);
+        },
+
+        events: [
+
+        ]
+    });
+
+</script>
+
+<script>
   $(function () {
     $("#example1").DataTable({
       "paging": true,
       "lengthChange": false,
-      "searching": true,
+      "searching": false,
       "ordering": true,
       "info": true,
       "autoWidth": false,
@@ -307,6 +354,15 @@
     });
     
   });
+
+
+  function deleteData(Did)
+    {
+        if (confirm("Delete selected data?"))
+        {
+            location.href = "<?php echo base_url();?>healthworker/deletePatient/"+Did;
+        }
+    }
 </script>
 
 </body>

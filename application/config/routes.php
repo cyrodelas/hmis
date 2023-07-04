@@ -65,7 +65,18 @@ $route['consultation'] = 'Patient/patient_consult';
 $route['forms'] = 'Patient/dynamic_form';
 $route['data-review'] = 'Patient/data_analysis';
 
+
+
+
 $route['dashboard-healthworker'] = 'HealthWorker/dashboard';
+$route['patientInformation'] = 'HealthWorker/patientList';
+$route['patientConsultation'] = 'HealthWorker/patientConsultation';
+
+
+
+
+
+
 
 $route['dashboard-admin'] = 'Administrator/dashboard';
 $route['medicineinfo'] = 'Administrator/medicineInformation';
@@ -75,7 +86,6 @@ $route['stockstransfer'] = 'Administrator/transferStocks';
 $route['physicalcount'] = 'Administrator/physicalCount';
 $route['healthcenter'] = 'Administrator/healthcenter';
 $route['barangay'] = 'Administrator/barangay';
-
 $route['naturev'] = 'Administrator/naturev';
 $route['consultationt'] = 'Administrator/consultationt';
 $route['symptoms'] = 'Administrator/symptoms';
@@ -86,3 +96,4 @@ $route['medcategory'] = 'Administrator/generic';
 $route['medtype'] = 'Administrator/brand';
 $route['uom'] = 'Administrator/uom';
 
+$route['signout'] = 'UserAccess/signout';

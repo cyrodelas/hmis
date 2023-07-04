@@ -178,50 +178,16 @@ class Patient extends CI_Controller {
             }
 
 
-            //processed_data
-            $fileName = 'processed_data.csv';
-            $this->load->library('excel');
-    
-            $inputFileName = 'C:\xampp\htdocs\hmis\assets\ML\processed_data.csv';
-            try{
-                $inputFileType  =   'CSV';
-                $objReader      =   PHPExcel_IOFactory::createReader($inputFileType);
-                $objPHPExcel    =   $objReader->load($inputFileName);
-                }catch(Exception $e){
-                die('Error loading file "'.pathinfo($inputFileName,PATHINFO_BASENAME).'": '.$e->getMessage());
-            }
-    
-            $objPHPExcel->setActiveSheetIndex(0);
-            
-            $objPHPExcel->getActiveSheet()->SetCellValue('A2', $age);
-            $objPHPExcel->getActiveSheet()->SetCellValue('B2', $civilStatus);
-            $objPHPExcel->getActiveSheet()->SetCellValue('C2', $sex);
-            $objPHPExcel->getActiveSheet()->SetCellValue('D2', $symptopms1);
-            $objPHPExcel->getActiveSheet()->SetCellValue('E2', $symptopms2);
-            $objPHPExcel->getActiveSheet()->SetCellValue('F2', $symptopms3);
-            $objPHPExcel->getActiveSheet()->SetCellValue('G2', $symptopms4);
-            $objPHPExcel->getActiveSheet()->SetCellValue('H2', $symptopms5);
-            $objPHPExcel->getActiveSheet()->SetCellValue('I2', $symptopms6);
-            $objPHPExcel->getActiveSheet()->SetCellValue('J2', $symptopms7);
-            $objPHPExcel->getActiveSheet()->SetCellValue('K2', $symptopms8);
-            $objPHPExcel->getActiveSheet()->SetCellValue('L2', $symptopms9);
-            $objPHPExcel->getActiveSheet()->SetCellValue('M2', $symptopms10);
-            $objPHPExcel->getActiveSheet()->SetCellValue('N2', $symptopms11);
 
-            header('Content-Type: application/vnd.ms-excel'); 
-            header('Content-Disposition: attachment;filename="'.$fileName.'"');
-            header('Cache-Control: max-age=0'); 
-            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');  
-            $objWriter->save('php://output');
-
-            //$message = "Data has been save successfully.";
-           // echo "<script type='text/javascript'>alert('$message');</script>";
+            $message = "Data has been save successfully.";
+            echo "<script type='text/javascript'>alert('$message');</script>";
 
         } else {
             $message = "Error on saving data.";
             echo "<script type='text/javascript'>alert('$message');</script>";
         }
-        //redirect("consultation", "refresh");
+        
+        redirect("consultation", "refresh");
     }
 
 

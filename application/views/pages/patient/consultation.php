@@ -145,6 +145,14 @@
                         </a>
                     </li>
                 
+                    <li class="nav-item">
+                        <a href="<?php echo base_url();?>signout" class="nav-link">
+                            <i class="nav-icon fa fa-sign-out-alt"></i>
+                            <p>
+                                Log Out
+                            </p>
+                        </a>
+                    </li>
 
                     
                 
@@ -220,6 +228,9 @@
                                             <input readonly type="text" class="form-control" id="itemDescription" name="patientCivilStatus" value="<?php echo $rs->patientCivilStatus; ?>">
                                         </div>
                                     </div>
+
+                                    <input style="display:none" readonly type="text" class="form-control" id="itemDescription" name="hcName" value="<?php echo $rs->patientHC; ?>">
+
                                 </div>
                                 <?php }?>
                             </div>
@@ -242,8 +253,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="itemCategory">Nature of Visit</label>
-                                            <select class="custom-select form-control" id="itemCategory" name="consultationType">
-                                                <option hidden>-- Select Nature of Visit -- </option>
+                                            <select required class="custom-select form-control" id="itemCategory" name="consultationType">
+                                                <option disabled selected hidden value="">-- Select Nature of Visit -- </option>
                                                 <?php foreach($nvData as $nvRow){?>
                                                     <option><?php echo $nvRow->nName; ?></option>
                                                 <?php }?>

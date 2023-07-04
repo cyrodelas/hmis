@@ -22,7 +22,6 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/plugins/summernote/summernote-bs4.min.css">
 
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/template/plugins/daterangepicker/daterangepicker.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 
     <!-- FullCalendar CSS -->
@@ -83,7 +82,7 @@
     
     <aside class="main-sidebar sidebar-light-primary elevation-4">
         
-        <a href="#" class="brand-link">
+        <a href="index3.html" class="brand-link">
             <img src="<?php echo base_url();?>assets/images/favicon.png" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
             <span style="color:maroon; font-size: .68em" class="brand-text font-weight-bold"> City Government of Cavite</span>
         </a>
@@ -91,12 +90,12 @@
         <div class="sidebar">
             
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                <div class="image" style="padding-right: 5px">
-                    <img style="width:50px" src="<?php echo base_url();?>assets/images/users/<?php echo $this->session->user_image;?>" class="img-circle elevation-2" alt="User Image">
-                </div> 
-
+                
+                <div class="image">
+                    <img style="width: 60px; margin-right:5px" src="<?php echo base_url();?>assets/images/users/<?php echo $this->session->user_image;?>" class="img-circle elevation-2" alt="User Image">
+                </div>
                 <div class="info">
-                    <a href="#" style="font-weight: 600" class="d-block"><?php echo $this->session->user_fn;?> <?php echo $this->session->user_ln;?> <br> <?php echo $this->session->user_role;?></a>
+                    <a href="#" style="font-weight:600" class="d-block"><?php echo $this->session->user_fn;?> <?php echo $this->session->user_ln;?> <br> <span style="font-size:14px"><?php echo $this->session->user_role;?></span></a>
                 </div>
                 
                 
@@ -108,9 +107,9 @@
             
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                    
+
                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>dashboard-patient" class="nav-link">
+                        <a href="<?php echo base_url();?>dashboard-hw" class="nav-link ">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                Dashboard
@@ -118,44 +117,31 @@
                         </a>
                     </li>
 
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>patient-information" class="nav-link active">
+                    <li class="nav-item menu-open">
+                        <a href="#" class="nav-link active">
                             <i class="nav-icon fas fa-user"></i>
                             <p>
-                                Patient Information
+                                Patient Management
+                                <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="<?php echo base_url();?>patientInformation" class="nav-link active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Patient Information</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo base_url();?>patientConsultation" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Patient Consultation</p>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>medical-history" class="nav-link ">
-                            <i class="nav-icon fas fa-folder"></i>
-                            <p>
-                                Patient Medical History
-                            </p>
-                        </a>
-                    </li>
 
-                     <li class="nav-item">
-                        <a href="<?php echo base_url();?>consultation" class="nav-link">
-                            <i class="nav-icon fas fa-handshake"></i>
-                            <p>
-                                Patient Consultation
-                            </p>
-                        </a>
-                    </li>
-                
-
-                    <li class="nav-item">
-                        <a href="<?php echo base_url();?>signout" class="nav-link">
-                            <i class="nav-icon fa fa-sign-out-alt"></i>
-                            <p>
-                                Log Out
-                            </p>
-                        </a>
-                    </li>
-
-                
                 </ul>
             </nav>
 
@@ -173,14 +159,15 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                           
+                            <li class="breadcrumb-item"><a href="<?php echo base_url();?>patientInformation">Patient Information</a></li>
+                            <li class="breadcrumb-item active">Update Records</li>
                         </ol>
                     </div>
                 </div>
             </div>
         </div>
-
-        <form method="post" id="frm_validation" action="<?php echo base_url();?>patient/UpdateInformation" data-toggle="validator" class="form-horizontal form-label-left" enctype="multipart/form-data">
+        
+        <form method="post" id="frm_validation" action="<?php echo base_url();?>healthworker/UpdatePatientData" data-toggle="validator" class="form-horizontal form-label-left" enctype="multipart/form-data">
                        
         <section class="content">
             <div class="container-fluid">
@@ -204,6 +191,7 @@
                                 
                                 <div class="row">
 
+                                    <input style="text-transform:uppercase; display:none" type="text" class="form-control" id="patientNumber" placeholder="Enter Last Name" name="patientNumber" value="<?php echo $rs->patientNumber; ?>">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="itemName">Last Name</label>
@@ -397,6 +385,7 @@
 
         </section>
         </form>
+        
 
     </div>
 
@@ -412,6 +401,8 @@
 
     </aside>
 
+
+    
 
 </div>
 
@@ -445,12 +436,15 @@
 
 <script src="<?php echo base_url();?>assets/template/dist/js/pages/dashboard.js"></script>
 
-
+<script>
+//  $(window).on('load', function() {
+//    $('#modal-lg').modal('show');
+//  });
+</script>
 
 <script src='<?php echo base_url();?>/assets/plugins/calendar/moment.min.js'></script>
 <script src='<?php echo base_url();?>/assets/plugins/calendar/fullcalendar.min.js'></script>
 
-<script src="<?php echo base_url();?>/assets/template/plugins/daterangepicker/daterangepicker.js"></script>
 
 <script src="<?php echo base_url();?>/assets/template/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url();?>/assets/template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>

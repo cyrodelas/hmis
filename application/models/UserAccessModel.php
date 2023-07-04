@@ -57,6 +57,7 @@ class UserAccessModel extends CI_model
         $user_ln = array();
         $user_PID = array();
         $user_EID = array();
+        $user_HW = array();
         $user_image = array();
 
         $password = md5($this->input->post("password", TRUE));
@@ -79,6 +80,7 @@ class UserAccessModel extends CI_model
             $user_PID = $rs->user_patientid;
             $user_EID = $rs->user_employeeid;
             $user_image = $rs->user_image;
+            $user_HW =  $rs->user_hc;
         }
 
         return array(
@@ -89,6 +91,7 @@ class UserAccessModel extends CI_model
             'user_ln' => $user_ln,
             'user_PID' => $user_PID,
             'user_EID' => $user_EID,
+            'user_HW' =>$user_HW,
             'user_image' => $user_image
         );
 

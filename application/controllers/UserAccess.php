@@ -44,6 +44,7 @@ class UserAccess extends CI_Controller {
                     'user_ln' => $result['user_ln'],
                     'user_PID' => $result['user_PID'],
                     'user_EID' => $result['user_EID'],
+                    'user_HW' => $result['user_HW'],
                     'user_image' => $result['user_image'],
                     'logged_in' => TRUE
                 );
@@ -89,6 +90,12 @@ class UserAccess extends CI_Controller {
 
     public function forgot(){
         $this->load->view('forgot');
+    }
+
+
+    public function signout(){
+        $this->session->sess_destroy();
+        redirect("UserAccess", "refresh");
     }
 
 }
